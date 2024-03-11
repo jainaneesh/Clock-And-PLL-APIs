@@ -23,25 +23,52 @@ int main(void)
 
 	HAL_Init();
 
-	SystemClock_Config(SYS_CLOCK_FREQ_50_MHZ);
+	SystemClock_Config(SYS_CLOCK_FREQ_84_MHZ);
 
 	UART2_Init();
+	if(SYS_CLOCK_FREQ_50_MHZ)
+	{
+		memset(msg,0,sizeof(msg));
+		sprintf(msg,"PLL Clock : 50 MHz\r\n");
+		HAL_UART_Transmit(&huart2,(uint8_t*)msg,strlen(msg),HAL_MAX_DELAY);
 
-	memset(msg,0,sizeof(msg));
-	sprintf(msg,"---------CLOCK VALUES-------\r\n");
-	HAL_UART_Transmit(&huart2,(uint8_t*)msg,strlen(msg),HAL_MAX_DELAY);
+		memset(msg,0,sizeof(msg));
+		sprintf(msg,"---------CLOCK VALUES-------\r\n");
+		HAL_UART_Transmit(&huart2,(uint8_t*)msg,strlen(msg),HAL_MAX_DELAY);
 
-	memset(msg,0,sizeof(msg));
-	sprintf(msg,"SYSCLK   :%ld Hz\r\n",HAL_RCC_GetSysClockFreq());
-	HAL_UART_Transmit(&huart2,(uint8_t*)msg,strlen(msg),HAL_MAX_DELAY);
+		memset(msg,0,sizeof(msg));
+		sprintf(msg,"SYSCLK   :%ld Hz\r\n",HAL_RCC_GetSysClockFreq());
+		HAL_UART_Transmit(&huart2,(uint8_t*)msg,strlen(msg),HAL_MAX_DELAY);
 
-	memset(msg,0,sizeof(msg));
-	sprintf(msg,"HCLK     :%ld Hz\r\n",HAL_RCC_GetHCLKFreq());
-	HAL_UART_Transmit(&huart2,(uint8_t*)msg,strlen(msg),HAL_MAX_DELAY);
+		memset(msg,0,sizeof(msg));
+		sprintf(msg,"HCLK     :%ld Hz\r\n",HAL_RCC_GetHCLKFreq());
+		HAL_UART_Transmit(&huart2,(uint8_t*)msg,strlen(msg),HAL_MAX_DELAY);
 
-	memset(msg,0,sizeof(msg));
-	sprintf(msg,"PCLK1    :%ld Hz\r\n",HAL_RCC_GetPCLK1Freq());
-	HAL_UART_Transmit(&huart2,(uint8_t*)msg,strlen(msg),HAL_MAX_DELAY);
+		memset(msg,0,sizeof(msg));
+		sprintf(msg,"PCLK1    :%ld Hz\r\n",HAL_RCC_GetPCLK1Freq());
+		HAL_UART_Transmit(&huart2,(uint8_t*)msg,strlen(msg),HAL_MAX_DELAY);
+	}else if(SYS_CLOCK_FREQ_84_MHZ)
+	{
+		memset(msg,0,sizeof(msg));
+		sprintf(msg,"PLL Clock : 84 MHz\r\n");
+		HAL_UART_Transmit(&huart2,(uint8_t*)msg,strlen(msg),HAL_MAX_DELAY);
+
+		memset(msg,0,sizeof(msg));
+		sprintf(msg,"---------CLOCK VALUES-------\r\n");
+		HAL_UART_Transmit(&huart2,(uint8_t*)msg,strlen(msg),HAL_MAX_DELAY);
+
+		memset(msg,0,sizeof(msg));
+		sprintf(msg,"SYSCLK   :%ld Hz\r\n",HAL_RCC_GetSysClockFreq());
+		HAL_UART_Transmit(&huart2,(uint8_t*)msg,strlen(msg),HAL_MAX_DELAY);
+
+		memset(msg,0,sizeof(msg));
+		sprintf(msg,"HCLK     :%ld Hz\r\n",HAL_RCC_GetHCLKFreq());
+		HAL_UART_Transmit(&huart2,(uint8_t*)msg,strlen(msg),HAL_MAX_DELAY);
+
+		memset(msg,0,sizeof(msg));
+		sprintf(msg,"PCLK1    :%ld Hz\r\n",HAL_RCC_GetPCLK1Freq());
+		HAL_UART_Transmit(&huart2,(uint8_t*)msg,strlen(msg),HAL_MAX_DELAY);
+	}
 
 
 	while(1)
