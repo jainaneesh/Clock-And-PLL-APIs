@@ -1,0 +1,1 @@
+Leveraged the Clock's HAL(Hardware Abstraction Layer) provided by STM to configure the system, AHB, APB1 and APB2 clocks. The source of these clocks were HSI(High Speed Internal) and PLL sourced by HSI.
